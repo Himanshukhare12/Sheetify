@@ -22,4 +22,4 @@ Excel_clone/
 
 ## Deployment
 You can access it at:
-[https://himanshukhare12.github.io/Excel-clone/](https://himanshukhare12.github.io/Excel-clone/)
+[https://himanshukhare12.github.io/Excel-clone/](https://himanshukhare12.github.io/Sheetify/)
