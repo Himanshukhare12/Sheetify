@@ -30,7 +30,7 @@ backgroundHInput.addEventListener("change", function (e) {
 })
 // change
 fontSizeInput.addEventListener("change", function () {
-    let fontSize = fontSizeInput.value;
+    let fontSize = Number(fontSizeInput.value);
     let address = addressInput.value;;
     let ridcidObj = getRidCidFromAddress(address);
     let tobeChangedCell = document.querySelector
@@ -41,6 +41,8 @@ fontSizeInput.addEventListener("change", function () {
     let cellObject = db[rid][cid];
     tobeChangedCell.style.fontSize = fontSize + "px";
     cellObject.fontSize = fontSize;
+    // remember the latest chosen size for new cells/sheets
+    currentFontSize = fontSize;
 })
 // select -> fontFamily
 fontFamilyInput.addEventListener("change", function () {
@@ -51,6 +53,10 @@ fontFamilyInput.addEventListener("change", function () {
         (`.grid .cell[rId='${ridcidObj.rid}'][cId='${ridcidObj.cid}']`);
     // change fontSize property
     tobeChangedCell.style.fontFamily = fontFamily;
+    let { rid, cid } = getRidCidFromAddress(address);
+    db[rid][cid].fontFamily = fontFamily;
+    // remember the latest chosen font for new cells/sheets
+    currentFontFamily = fontFamily;
 })
 boldIcon.addEventListener("click", function () {
     let address = addressInput.value;

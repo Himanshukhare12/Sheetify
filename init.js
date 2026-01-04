@@ -5,6 +5,11 @@ let topRow = document.querySelector(".top_row");
 let leftCol = document.querySelector(".left_col");
 // grid
 let grid = document.querySelector(".grid");
+// default styling constants
+const DEFAULT_FONT_FAMILY = "'Courier New'";
+const DEFAULT_FONT_SIZE = 14;
+let currentFontFamily = DEFAULT_FONT_FAMILY;
+let currentFontSize = DEFAULT_FONT_SIZE;
 let addressInput = document.querySelector(".address_input");
 let formulaInput = document.querySelector(".formula_input");
 // *************************Menu Elements *****************************
@@ -91,9 +96,7 @@ for (let i = 0; i < AllGridCells.length; i++) {
             let prevCell = document
                 .querySelector
                 (`.grid .cell[rId='${ridcidObj.rid}'][cId='${ridcidObj.cid}']`);
-            prevCell.style.border = "0.1px solid gray";
-            prevCell.style.borderRight = "none";
-            prevCell.style.borderTop = "none";
+            prevCell.classList.remove("cell-active");
         }
         // 
         // -> then i will get the address of that particular cell
@@ -103,14 +106,24 @@ for (let i = 0; i < AllGridCells.length; i++) {
         rid = Number(rid);
         cid = Number(cid);
         addressInput.value = String.fromCharCode(cid + 65) + (rid + 1);
+        let cellObject = db[rid][cid];
         // cell styling bhi change
         let cCell = AllGridCells[i];
-        cCell.style.border = "2px solid #1B9CFC";
+        // auto-apply current font to untouched cells so your choice sticks across cells/sheets
+        if (cellObject.fontFamily === DEFAULT_FONT_FAMILY && currentFontFamily !== DEFAULT_FONT_FAMILY) {
+            cellObject.fontFamily = currentFontFamily;
+            cCell.style.fontFamily = currentFontFamily;
+        }
+        if (cellObject.fontSize === DEFAULT_FONT_SIZE && currentFontSize !== DEFAULT_FONT_SIZE) {
+            cellObject.fontSize = currentFontSize;
+            cCell.style.fontSize = currentFontSize + "px";
+        }
+        cCell.classList.add("cell-active");
         // *****************2 way binding menu styling*****************
-        let cellObject = db[rid][cid];
         // font size 
         let fontSize = cellObject.fontSize;
         fontSizeInput.value = fontSize;
+        fontFamilyInput.value = cellObject.fontFamily;
         boldIcon.classList.remove("selected");
         italicIcon.classList.remove("selected");
         underlineIcon.classList.remove("selected");
@@ -142,10 +155,7 @@ for (let i = 0; i < AllGridCells.length; i++) {
     })
 
 }
-// get first elem
-let firstCell = document.querySelector(".grid .cell[rId='0'][cId='0']");
-firstCell.click();
-firstCell.focus();
+setinitUI();
 function getRidCidFromAddress(address) {
     // A-Z, 1-100
     // B
@@ -226,7 +236,12 @@ function setinitUI() {
             tobeChangedCell.style.textAlign = cellObject.halign;
             tobeChangedCell.style.textDecoration = cellObject.underline == false ? "none" : "underline";
             tobeChangedCell.style.fontStyle = cellObject.italic == false ? "normal" : "italic";
-            tobeChangedCell.style.fontSize = cellObject.fontSize;
+            tobeChangedCell.style.fontSize = cellObject.fontSize + "px";
         }
+    }
+    let firstCell = document.querySelector(".grid .cell[rId='0'][cId='0']");
+    if (firstCell) {
+        firstCell.click();
+        firstCell.focus();
     }
 }
