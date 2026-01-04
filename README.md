@@ -1,5 +1,5 @@
 ## Description
-Excel-clone is a web-based application that mimics the basic functionalities of Microsoft Excel. It allows users to create, edit, and format spreadsheets directly in their web browser.
+Sheetify is a web-based application that mimics the basic functionalities of Microsoft Excel. It allows users to create, edit, and format spreadsheets directly in their web browser.
 
 ## Features
 - Font formatting (bold, italic, underline)
@@ -11,7 +11,7 @@ Excel-clone is a web-based application that mimics the basic functionalities of 
 
 ## File Structure
 ```
-Excel_clone/
+Sheetify/
 ├── index.html
 ├── style.css
 ├── init.js
@@ -22,4 +22,4 @@ Excel_clone/
 
 ## Deployment
 You can access it at:
-[https://himanshukhare12.github.io/Excel-clone/](https://himanshukhare12.github.io/Excel-clone/)
+[https://himanshukhare12.github.io/Sheetify/](https://himanshukhare12.github.io/Sheetify/)
