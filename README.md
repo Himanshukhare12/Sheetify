@@ -11,7 +11,7 @@ Sheetify is a web-based application that mimics the basic functionalities of Mic
 
 ## File Structure
 ```
-Excel_clone/
+Sheetify/
 ├── index.html
 ├── style.css
 ├── init.js
